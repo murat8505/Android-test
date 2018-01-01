@@ -126,16 +126,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listItem="@layout/item_dessert" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/myFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:clickable="true"
-        android:src="@drawable/ic_action_add"
-        app:backgroundTint="#279AF1"
-        app:fabSize="normal"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="bottom|right|end" />
+
 
 </android.support.design.widget.CoordinatorLayout>

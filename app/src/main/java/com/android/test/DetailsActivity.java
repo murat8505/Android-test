@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -130,12 +128,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.myFAB);
-        myFab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(DetailsActivity.this, "clicked add", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
 
@@ -144,9 +137,9 @@ public class DetailsActivity extends AppCompatActivity {
         if (collapsedMenu != null
                 && (!appBarExpanded || collapsedMenu.size() != 1)) {
             //collapsed
-            collapsedMenu.add("Add")
+           /* collapsedMenu.add("Add")
                     .setIcon(R.drawable.ic_action_add)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);*/
         } else {
             //expanded
         }

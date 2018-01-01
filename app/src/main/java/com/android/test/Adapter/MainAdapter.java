@@ -32,7 +32,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         public CardView cardView;
         public TextView name, email, ip_address, gender, employment_text;
         public ImageView thumbnail;
-        public RelativeLayout viewBackground, viewForeground;
+        public RelativeLayout /*viewBackground,*/ viewForeground;
 
         public MyViewHolder(View view) {
             super(view);
@@ -43,7 +43,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
             gender = view.findViewById(R.id.gender);
             employment_text = view.findViewById(R.id.employment_text);
             thumbnail = view.findViewById(R.id.thumbnail);
-            viewBackground = view.findViewById(R.id.view_background);
+            //viewBackground = view.findViewById(R.id.view_background);
             viewForeground = view.findViewById(R.id.view_foreground);
         }
     }

@@ -15,6 +15,7 @@ import com.android.test.DetailsActivity;
 import com.android.test.Model.Model;
 import com.android.test.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.Serializable;
 import java.util.List;
@@ -56,7 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item, parent, false);
+                .inflate(R.layout.item_main, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -71,6 +72,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         holder.employment_text.setText(item.getEmployment().getText());
         Glide.with(context)
                 .load(item.getPhoto())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)   // cache both original
                 .into(holder.thumbnail);
 
         // intent = new Intent(context, DetailsActivity.class);

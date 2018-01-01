@@ -17,9 +17,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.test.Adapter.ListAdapter;
+import com.android.test.Adapter.MainAdapter;
 import com.android.test.Helper.RecyclerItemTouchHelper;
-import com.android.test.Model.Model;
+import com.android.test.Model.MainModel;
 import com.android.test.Utils.MyApplication;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
-    public static List<Model> itemList;
-    private ListAdapter mAdapter;
+    public static List<MainModel> itemList;
+    private MainAdapter mAdapter;
     private CoordinatorLayout coordinatorLayout;
 
     // url to fetch menu json
     private static final String URL = "http://www.mocky.io/v2/5a488f243000004c15c3c57e";
 
-    public  Model getItem(int i) {
+    public MainModel getItem(int i) {
         return itemList.get(i);
     }
     @Override
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
         recyclerView = findViewById(R.id.recycler_view);
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         itemList = new ArrayList<>();
-        mAdapter = new ListAdapter(this, itemList);
+        mAdapter = new MainAdapter(this, itemList);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
                             return;
                         }
 
-                        List<Model> items = new Gson().fromJson(response.toString(), new TypeToken<List<Model>>() {
+                        List<MainModel> items = new Gson().fromJson(response.toString(), new TypeToken<List<MainModel>>() {
                         }.getType());
 
                         // adding items to cart list
@@ -141,12 +141,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
      */
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
-        if (viewHolder instanceof ListAdapter.MyViewHolder) {
+        if (viewHolder instanceof MainAdapter.MyViewHolder) {
             // get the removed item name to display it in snack bar
             String name = itemList.get(viewHolder.getAdapterPosition()).getName();
 
             // backup of removed item for undo purpose
-            final Model deletedItem = itemList.get(viewHolder.getAdapterPosition());
+            final MainModel deletedItem = itemList.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
 
             // remove the item from recycler view

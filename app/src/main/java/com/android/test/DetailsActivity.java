@@ -11,16 +11,16 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.test.Adapter.DessertAdapter;
-import com.android.test.Model.Model;
+import com.android.test.Adapter.DetailsAdapter;
+import com.android.test.Model.MainModel;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -29,16 +29,16 @@ public class DetailsActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private RecyclerView recyclerView;
 
-    private DessertAdapter dessertAdapter;
+    private DetailsAdapter detailsAdapter;
 
     private Menu collapsedMenu;
     private boolean appBarExpanded = true;
-    private Model test;
-    int item;
+    private MainModel test;
+    String[] value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animate_toolbar);
+        setContentView(R.layout.activity_details);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.anim_toolbar);
         ImageView header = (ImageView)findViewById(R.id.header);
@@ -53,13 +53,22 @@ public class DetailsActivity extends AppCompatActivity {
         Bitmap bitmap = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-//            test = (Model)extras.getSerializable("test");
+//            test = (MainModel)extras.getSerializable("test");
 
-            //test = new Model();
+            //test = new MainModel();
 
             test = MainActivity.itemList.get(extras.getInt("item"));
             //test.setPhoto(extras.getString("photo"));
-
+            value = new String[]{
+                    test.getId().toString(),
+                    test.getFirstName(),
+                    test.getLastName(),
+                    test.getEmail(),
+                    test.getGender(),
+                    test.getIpAddress(),
+                    test.getPhoto(),
+                    test.getEmployment().getName(),
+                    test.getEmployment().getPosition()};
             System.out.println("------"+test.getName());
 
 
@@ -67,6 +76,7 @@ public class DetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle(test.getName());
             Glide.with(this)
                     .load(test.getPhoto())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)   // cache both original
                     .into(header);
 
            /* try {
@@ -83,7 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
             }*/
 
         }
-        if(bitmap==null) bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.header);
+        if(bitmap==null) bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_foreground);
             Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
                 @SuppressWarnings("ResourceType")
                 @Override
@@ -101,13 +111,13 @@ public class DetailsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        dessertAdapter = new DessertAdapter(this);
-        recyclerView.setAdapter(dessertAdapter);
+        detailsAdapter = new DetailsAdapter(this, value);
+        recyclerView.setAdapter(detailsAdapter);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.d(DetailsActivity.class.getSimpleName(), "onOffsetChanged: verticalOffset: " + verticalOffset);
+                //Log.d(DetailsActivity.class.getSimpleName(), "onOffsetChanged: verticalOffset: " + verticalOffset);
 
                 //  Vertical offset == 0 indicates appBar is fully expanded.
                 if (Math.abs(verticalOffset) > 200) {

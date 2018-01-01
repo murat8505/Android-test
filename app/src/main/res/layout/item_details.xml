@@ -40,7 +40,7 @@
             android:layout_marginTop="@dimen/activity_margin_half"
             android:ellipsize="end"
             android:maxLines="2"
-            tools:text="A family of confections made with sugar or honey, roasted nuts, whipped egg whites, and sometimes chopped candied fruit. The consistency of nougat is chewy, and it is used in a variety of candy bars and chocolates."/>
+            tools:text="Value"/>
 
 
         <View

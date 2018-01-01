@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.test.DetailsActivity;
-import com.android.test.Model.Model;
+import com.android.test.Model.MainModel;
 import com.android.test.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -20,10 +20,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.io.Serializable;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> implements Serializable {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> implements Serializable {
     private Context context;
     //private List<Item> cartList;
-    private List<Model> itemList;
+    private List<MainModel> itemList;
     public Intent intent;
 
 
@@ -49,7 +49,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
     }
 
 
-    public ListAdapter(Context context, List<Model> itemList) {
+    public MainAdapter(Context context, List<MainModel> itemList) {
         this.context = context;
         this.itemList = itemList;
     }
@@ -64,7 +64,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final Model item = itemList.get(position);
+        final MainModel item = itemList.get(position);
         holder.name.setText(item.getName());
         holder.email.setText(item.getEmail());
         holder.ip_address.setText(item.getIpAddress());
@@ -78,7 +78,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         // intent = new Intent(context, DetailsActivity.class);
 
         //context.startActivity(intent);
-       /* ArrayList<Model> arraylist = new ArrayList<Model>();
+       /* ArrayList<MainModel> arraylist = new ArrayList<MainModel>();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("test", (ArrayList<? extends Parcelable>) arraylist);
         intent.putExtras(bundle);*/
@@ -112,7 +112,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         notifyItemRemoved(position);
     }
 
-    public void restoreItem(Model item, int position) {
+    public void restoreItem(MainModel item, int position) {
         itemList.add(position, item);
         // notify item added by position
         notifyItemInserted(position);

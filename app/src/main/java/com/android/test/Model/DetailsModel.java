@@ -5,13 +5,13 @@ import java.util.List;
 
 
 
-public class Dessert {
+public class DetailsModel {
 
     private String name;
     private String description;
     private String firstLetter;
 
-    public Dessert(String name, String description) {
+    public DetailsModel(String name, String description) {
         this.name = name;
         this.firstLetter = String.valueOf(name.charAt(0));
         this.description = description;
@@ -41,14 +41,14 @@ public class Dessert {
         this.firstLetter = firstLetter;
     }
 
-    public static List<Dessert> prepareDesserts(String[] names, String[] descriptions) {
-        List<Dessert> desserts = new ArrayList<>(names.length);
+    public static List<DetailsModel> prepareDesserts(String[] names, String[] descriptions) {
+        List<DetailsModel> detailsModels = new ArrayList<>(names.length);
 
         for (int i = 0; i < names.length; i++) {
-            Dessert dessert = new Dessert(names[i], descriptions[i]);
-            desserts.add(dessert);
+            DetailsModel detailsModel = new DetailsModel(names[i], descriptions[i]);
+            detailsModels.add(detailsModel);
         }
 
-        return desserts;
+        return detailsModels;
     }
 }

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 
-public class Model implements Serializable{
+public class MainModel implements Serializable{
 
     @SerializedName("first_name")
     private String FirstName;

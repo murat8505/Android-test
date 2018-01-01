@@ -8,58 +8,54 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.test.*;
-import com.android.test.Model.Dessert;
+import com.android.test.Model.DetailsModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 
-public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertVh> {
+public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DetailsVh> {
 
 
-    private List<Dessert> desserts = new ArrayList<>();
+    private List<DetailsModel> detailsModels = new ArrayList<>();
 
     private Context context;
 
-    public DessertAdapter(Context context, String[] value) {
+    public DetailsAdapter(Context context, String[] value) {
         this.context = context;
 
-        desserts = Dessert.prepareDesserts(
-                context.getResources().getStringArray(R.array.item_names), value
-                //context.getResources().getStringArray(R.array.dessert_descriptions)
-        );
+        detailsModels = DetailsModel.prepareDesserts(
+                context.getResources().getStringArray(R.array.item_names), value);
     }
 
     @Override
-    public DessertVh onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DetailsVh onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_dessert, parent, false);
-        return new DessertVh(view);
+        View view = inflater.inflate(R.layout.item_details, parent, false);
+        return new DetailsVh(view);
     }
 
     @Override
-    public void onBindViewHolder(DessertVh holder, int position) {
-        Dessert dessert = desserts.get(position);
-
-        holder.mName.setText(dessert.getName());
-        holder.mDescription.setText(dessert.getDescription());
-        holder.mFirstLetter.setText(String.valueOf(dessert.getFirstLetter()));
-
+    public void onBindViewHolder(DetailsVh holder, int position) {
+        DetailsModel detailsModel = detailsModels.get(position);
+        holder.mName.setText(detailsModel.getName());
+        holder.mDescription.setText(detailsModel.getDescription());
+        holder.mFirstLetter.setText(String.valueOf(detailsModel.getFirstLetter()));
     }
 
     @Override
     public int getItemCount() {
-        return desserts == null ? 0 : desserts.size();
+        return detailsModels == null ? 0 : detailsModels.size();
     }
 
-    public static class DessertVh extends RecyclerView.ViewHolder {
+    public static class DetailsVh extends RecyclerView.ViewHolder {
 
         private TextView mName;
         private TextView mDescription;
         private TextView mFirstLetter;
 
-        public DessertVh(View itemView) {
+        public DetailsVh(View itemView) {
             super(itemView);
 
             mName = (TextView) itemView.findViewById(R.id.txt_name);

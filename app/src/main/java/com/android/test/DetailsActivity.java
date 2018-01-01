@@ -127,9 +127,7 @@ public class DetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
+        
     }
 
     @Override
